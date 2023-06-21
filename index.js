@@ -55,31 +55,32 @@ switch (option) {
     case 2:
         //2.Hacer un programa que pida el nombre de un estudiante y N notas, calcular el promedio de las notas y determinar si el estudiante aprueba o reprueba; (Aprueba con un promedio de 3).  
         c2.style.display="flex"
-        sum=0
-        cont=1
-        let note=-1
-        let name=prompt("Digite el nombre del estudiante")
-        while (true) {
-            note=Number(prompt("Digite la nota"))
-            if(note==99){
-                break
-            }
-            else if (note<0 || note>5) {
-                alert("Escriba un numero positivo menor que 5 o 99 para salir")
+        btnSubmit.style.display="block"
+        btnSubmit.addEventListener('click',()=>{
+            let numberTypeDesc=document.getElementById("numberTypeDesc")
+            let resultC2=document.getElementById("resultC2")
+
+            
+            if (!numberTypeDesc.value || numberTypeDesc.value<0) {
+                alert("Escriba un numero")
             }
             else{
-                cont++
-                sum=sum+note
+                let space=0
+                for (let i = numberTypeDesc.value; i >= 1; i--) {
+                    for (let h = 1; h <= space; h++) {
+                        resultC2.innerHTML+="-"
+                    }
+                    for (let j = 1; j <= i; j++) {
+                        resultC2.innerHTML+="*"
+                    }
+                    space++
+                    resultC2.innerHTML+="<br>"
+                }
+                
+                btnSubmit.style.display="none"
+                btnReset.style.display="block"
             }
-        }
-        let resultC2=document.getElementById("resultC2")
-        if (cont>1) {
-            resultC2.innerHTML=`El promedio final de ${name} es: ${sum/(cont-1)}`
-            
-        } else {
-            resultC2.innerHTML=`El promedio final de ${name} es: ${sum/cont}`
-        }
-        btnReset.style.display="block"
+        })
         
         break;
     case 3:
